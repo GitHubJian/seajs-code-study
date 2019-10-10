@@ -5,33 +5,30 @@
 
     <script src="/lib/mod.js"></script>
 
-    <script src="/test/js/all_d57113a.js"></script>
-    <script src="/test/js/chunk_d57113a.js"></script>
-    <script src="/test/js/start_d57113a.js"></script>
-
     <script>
       require.resourceMap({
         res: {
-          'test.css': {
-            url: '/test/css/test_af343fe.css'
+          'start.css': {
+            url: '/test/css/start_af343fe.css'
           },
           'start.js': {
-            url: '/test/js/start_d57113a.js',
-            pkg: 'start'
-          },
-          'common.js': {
-            url: '/test/js/common_d57113a.js',
-            deps: ['foo.js', 'test.css']
+            url: '/test/js/start.js',
+            pkg: 'start.js'
           }
         },
-        pkg: {}
+        pkg: {
+          'start.js': {
+            url: '/test/js/start_d57113a.js',
+            deps: ['start.css']
+          }
+        }
       })
     </script>
 
     <script>
-      var start = require('start.js')
-
-      start()
+      require.async('start.js', function(require, exports, module) {
+        console.log(123)
+      })
     </script>
   </body>
 </html>
